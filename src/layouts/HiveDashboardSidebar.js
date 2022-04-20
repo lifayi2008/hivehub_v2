@@ -90,23 +90,38 @@ export default function HiveDashboardSidebar({ isOpenSidebar, onCloseSidebar }) 
       <Stack sx={{ mx: 2.5, mt: 4 }}>
         <NavBox>
           <Stack direction="row" alignItems="center" justifyContent="center">
-            <Box sx={{ position: 'relative', top: '-15px', marginRight: '15px' }}>
+            <Box sx={{ position: 'relative', top: '-35px', marginRight: '15px' }}>
               <Box
                 sx={{
                   width: 0,
                   height: 0,
                   border: '22px solid transparent',
-                  borderBottom: '22px solid black'
+                  borderBottom: `22px solid ${
+                    activeSection === 'home' ? 'black' : 'rgba(0, 0, 0, 0.3)'
+                  }`,
+                  position: 'relative',
+                  top: '40px'
+                }}
+              />
+              <Box
+                sx={{
+                  width: 0,
+                  height: 0,
+                  border: '18px solid transparent',
+                  borderBottom: `18px solid ${activeSection === 'home' ? 'transparent' : 'white'}`,
+                  position: 'relative',
+                  top: '2px',
+                  left: '3.7px'
                 }}
               />
               <Box
                 sx={{
                   width: '30px',
-                  height: '16px',
-                  border: '1px solid black',
+                  height: '20px',
+                  border: `2px solid ${activeSection === 'home' ? 'black' : 'rgba(0, 0, 0, 0.3)'}`,
                   borderTop: 'none',
                   margin: '0 auto',
-                  backgroundColor: 'black'
+                  backgroundColor: `${activeSection === 'home' ? 'black' : 'white'}`
                 }}
               />
             </Box>
@@ -120,7 +135,7 @@ export default function HiveDashboardSidebar({ isOpenSidebar, onCloseSidebar }) 
             direction="row"
             alignItems="center"
             justifyContent="center"
-            sx={{ position: 'relative', left: '20px' }}
+            sx={{ position: 'relative', top: '15px', left: '20px' }}
           >
             <Box sx={{ position: 'relative', top: '3px', marginRight: '15px' }}>
               <SmallHexagon
@@ -128,7 +143,7 @@ export default function HiveDashboardSidebar({ isOpenSidebar, onCloseSidebar }) 
                 rootHexagon
                 sideLength={20}
                 borderWidth={2}
-                backColor="transparent"
+                backColor={activeSection === 'nodes' ? 'black' : 'transparent'}
               />
             </Box>
             <Typography variant="h5" sx={{ ...(activeSection === 'nodes' && activeLink) }}>
@@ -152,7 +167,10 @@ export default function HiveDashboardSidebar({ isOpenSidebar, onCloseSidebar }) 
                   borderRadius: '2px',
                   display: 'flex',
                   alignItems: 'center',
-                  border: `2px solid ${activeSection === 'vaults' ? 'black' : 'rgba(0, 0, 0, 0.3)'}`
+                  border: `2px solid ${
+                    activeSection === 'vaults' ? 'black' : 'rgba(0, 0, 0, 0.3)'
+                  }`,
+                  backgroundColor: `${activeSection === 'vaults' ? 'black' : 'transparent'}`
                 }}
               >
                 <Box
@@ -162,8 +180,9 @@ export default function HiveDashboardSidebar({ isOpenSidebar, onCloseSidebar }) 
                     width: '10px',
                     margin: '0 auto',
                     borderRadius: '10px',
+                    backgroundColor: `${activeSection === 'vaults' ? 'black' : 'transparent'}`,
                     border: `2px solid ${
-                      activeSection === 'vaults' ? 'black' : 'rgba(0, 0, 0, 0.3)'
+                      activeSection === 'vaults' ? 'white' : 'rgba(0, 0, 0, 0.3)'
                     }`
                   }}
                 />
