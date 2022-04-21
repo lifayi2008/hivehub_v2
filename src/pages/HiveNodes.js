@@ -42,7 +42,7 @@ function NodeItem({ nodeName, nodeStatus, date, nodeDescription, nodeIP, ownerDI
           {nodeName}
           <Box component="span" sx={{ ml: 2 }}>
             {nodeStatus ? (
-              <Chip label="online" color="success" sx={{ height: '20px' }} />
+              <Chip label="online" color="success" sx={{ height: '20px', color: 'white' }} />
             ) : (
               <Chip label="offline" sx={{ height: '20px' }} />
             )}

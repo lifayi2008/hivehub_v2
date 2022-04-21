@@ -16,6 +16,7 @@ import HiveDashboard from './layouts/HiveDashboard';
 import HiveHome from './pages/HiveHome';
 import HiveNodes from './pages/HiveNodes';
 import HiveVaults from './pages/HiveVaults';
+import HiveNodeAdd from './pages/HiveNodeAdd';
 
 // ----------------------------------------------------------------------
 
@@ -56,6 +57,7 @@ export default function Router() {
         { path: '', element: <Navigate to="/hive/dashboard/home" replace /> },
         { path: 'home', element: <HiveHome /> },
         { path: 'nodes', element: <HiveNodes /> },
+        { path: 'nodes/add', element: <HiveNodeAdd /> },
         { path: 'vaults', element: <HiveVaults /> }
       ]
     },

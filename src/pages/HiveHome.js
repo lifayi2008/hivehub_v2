@@ -69,7 +69,7 @@ function NodeItem({ nodeName, nodeURL, nodeStatus }) {
       </Grid>
       <Grid item lg={2} md={2} sm={2} xs={2} sx={{ height: '35px', lineHeight: '35px' }}>
         {nodeStatus ? (
-          <Chip label="online" color="success" sx={{ height: '25px' }} />
+          <Chip label="online" color="success" sx={{ height: '25px', color: 'white' }} />
         ) : (
           <Chip label="offline" sx={{ height: '25px' }} />
         )}
