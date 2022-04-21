@@ -1,7 +1,11 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
+import { DID } from '@elastosfoundation/elastos-connectivity-sdk-js';
 import SmallHexagon from '../../SmallHexagon';
+import UserContext from '../../../contexts/UserContext';
+import { essentialsConnector, useConnectivitySDK } from '../../../service/connectivity';
 
 const ConnectButton = styled(Button)({
   color: '#FF931E',
@@ -65,6 +69,49 @@ function CustomBox({ children }) {
 }
 
 export default function LandingPage() {
+  const { user } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(user);
+
+  console.log(user);
+
+  useConnectivitySDK();
+
+  const login = async () => {
+    setLoading(true);
+    const didAccess = new DID.DIDAccess();
+    let presentation;
+
+    console.log('Trying to sign in using the connectivity SDK');
+    try {
+      presentation = await didAccess.requestCredentials({
+        claims: [DID.simpleIdClaim('Your name', 'name', false)]
+      });
+    } catch (e) {
+      // Possible exception while using wallet connect (i.e. not an identity wallet)
+      // Kill the wallet connect session
+      console.warn('Error while getting credentials', e);
+      try {
+        await essentialsConnector.getWalletConnectProvider().disconnect();
+      } catch (e) {
+        console.error('Error while trying to disconnect wallet connect session', e);
+      }
+      setLoading(false);
+      return;
+    }
+
+    console.log(presentation);
+
+    if (presentation) {
+      const did = presentation.getHolder().getMethodSpecificId();
+      localStorage.setItem('did', did);
+      user.did = did;
+      setCurrentUser({ ...user });
+      console.log(did);
+    }
+    setLoading(false);
+  };
+
   return (
     <Container maxWidth="1000" sx={{ paddingTop: 15 }}>
       <Box>
@@ -93,8 +140,22 @@ export default function LandingPage() {
           </Typography>
         </Box>
         <Box sx={{ margin: '40px auto', textAlign: 'center' }}>
-          <ConnectButton variant="outlined">Connect Wallet</ConnectButton>
-          <GitHubButton variant="outlined">GitHub</GitHubButton>
+          {!currentUser.did ? (
+            <ConnectButton variant="outlined" onClick={login} loading={loading} disabled={loading}>
+              Connect Wallet
+            </ConnectButton>
+          ) : (
+            <ConnectButton variant="outlined" href="/dashboard">
+              Dashboard
+            </ConnectButton>
+          )}
+          <GitHubButton
+            variant="outlined"
+            target="_blank"
+            href="https://github.com/elastos/Elastos.Hive.Node"
+          >
+            GitHub
+          </GitHubButton>
         </Box>
 
         <Box

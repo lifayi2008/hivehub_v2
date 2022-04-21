@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Link } from '@mui/material';
 import * as React from 'react';
 import HiveLogo from './HiveLogo';
 import WebAppBackground from '../../WebAppBackground';
@@ -33,7 +33,9 @@ export default function Navigator() {
           sx={{ margin: '0 auto' }}
         >
           <Grid item xs={2}>
-            <HiveLogo />
+            <Link href="/" sx={{ textDecoration: 'none' }}>
+              <HiveLogo />
+            </Link>
           </Grid>
           <Grid item xs={1}>
             <LanguageBar />

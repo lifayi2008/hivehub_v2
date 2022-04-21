@@ -24,38 +24,19 @@ import HiveNodeDetail from './pages/HiveNodeDetail';
 export default function Router() {
   return useRoutes([
     {
-      path: '/dashboard',
-      element: <DashboardLayout />,
-      children: [
-        { element: <Navigate to="/dashboard/app" replace /> },
-        { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
-        { path: 'products', element: <Products /> },
-        { path: 'blog', element: <Blog /> }
-      ]
-    },
-    {
       path: '/',
-      element: <LogoOnlyLayout />,
-      children: [
-        { path: 'login', element: <Login /> },
-        { path: 'register', element: <Register /> },
-        { path: '404', element: <NotFound /> },
-        { path: '/', element: <Navigate to="/dashboard" /> },
-        { path: '*', element: <Navigate to="/404" /> }
-      ]
-    },
-    {
-      path: '/hive',
       element: <HiveMainPage />,
-      children: [{ path: 'landing', element: <LandingPage /> }]
+      children: [
+        { path: '', element: <Navigate to="/landing" replace /> },
+        { path: 'landing', element: <LandingPage /> }
+      ]
     },
 
     {
-      path: '/hive/dashboard',
+      path: '/dashboard',
       element: <HiveDashboard />,
       children: [
-        { path: '', element: <Navigate to="/hive/dashboard/home" replace /> },
+        { path: '', element: <Navigate to="/dashboard/home" replace /> },
         { path: 'home', element: <HiveHome /> },
         { path: 'nodes', element: <HiveNodes /> },
         { path: 'nodes/add', element: <HiveNodeAdd /> },
@@ -63,6 +44,28 @@ export default function Router() {
         { path: 'vaults', element: <HiveVaults /> }
       ]
     },
+    // {
+    //   path: '/minimal/dashboard',
+    //   element: <DashboardLayout />,
+    //   children: [
+    //     { element: <Navigate to="/minimal/dashboard/app" replace /> },
+    //     { path: 'app', element: <DashboardApp /> },
+    //     { path: 'user', element: <User /> },
+    //     { path: 'products', element: <Products /> },
+    //     { path: 'blog', element: <Blog /> }
+    //   ]
+    // },
+    // {
+    //   path: '/minimal/',
+    //   element: <LogoOnlyLayout />,
+    //   children: [
+    //     { path: 'login', element: <Login /> },
+    //     { path: 'register', element: <Register /> },
+    //     { path: '404', element: <NotFound /> },
+    //     { path: '/', element: <Navigate to="/minimal/dashboard" /> },
+    //     { path: '*', element: <Navigate to="/404" /> }
+    //   ]
+    // },
 
     { path: '*', element: <Navigate to="/404" replace /> }
   ]);
