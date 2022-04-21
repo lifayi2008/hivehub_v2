@@ -14,6 +14,8 @@ import NotFound from './pages/Page404';
 import HiveMainPage from './layouts/HiveMainPage';
 import HiveDashboard from './layouts/HiveDashboard';
 import HiveHome from './pages/HiveHome';
+import HiveNodes from './pages/HiveNodes';
+import HiveVaults from './pages/HiveVaults';
 
 // ----------------------------------------------------------------------
 
@@ -52,7 +54,9 @@ export default function Router() {
       element: <HiveDashboard />,
       children: [
         { path: '', element: <Navigate to="/hive/dashboard/home" replace /> },
-        { path: 'home', element: <HiveHome /> }
+        { path: 'home', element: <HiveHome /> },
+        { path: 'nodes', element: <HiveNodes /> },
+        { path: 'vaults', element: <HiveVaults /> }
       ]
     },
 

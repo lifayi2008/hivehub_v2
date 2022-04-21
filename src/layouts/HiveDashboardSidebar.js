@@ -52,7 +52,7 @@ const NavBox = styled(Box)({
 
 export default function HiveDashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
-  const [activeSection, setActiveSection] = React.useState('home'); // value can be 'home' 'nodes' 'vaults'
+  const [activeSection, setActiveSection] = React.useState('nodes'); // value can be 'home' 'nodes' 'vaults'
 
   useEffect(() => {
     if (isOpenSidebar) {
