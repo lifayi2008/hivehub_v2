@@ -13,6 +13,7 @@ import User from './pages/User';
 import NotFound from './pages/Page404';
 import HiveMainPage from './layouts/HiveMainPage';
 import HiveDashboard from './layouts/HiveDashboard';
+import HiveHome from './pages/HiveHome';
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +50,10 @@ export default function Router() {
     {
       path: '/hive/dashboard',
       element: <HiveDashboard />,
-      children: [{ path: 'my', element: undefined }]
+      children: [
+        { path: '', element: <Navigate to="/hive/dashboard/home" replace /> },
+        { path: 'home', element: <HiveHome /> }
+      ]
     },
 
     { path: '*', element: <Navigate to="/404" replace /> }
