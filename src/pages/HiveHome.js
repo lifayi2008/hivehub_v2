@@ -17,7 +17,12 @@ const CustomButton = styled(Button)({
   borderRadius: '18px',
   fontSize: '17px',
   fontWeight: 'bold',
-  padding: '10px'
+  padding: '10px',
+
+  '&:hover': {
+    backgroundColor: 'rgba(255, 147, 30, 0.3)',
+    color: '#fff'
+  }
 });
 
 const ContainerBox = styled(Box)(({ theme }) => ({

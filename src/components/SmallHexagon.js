@@ -63,9 +63,12 @@ export default function SmallHexagon({
           width: sideLength * 1.732,
           backgroundColor: backColor,
           borderLeft: `${borderWidth}px solid ${borderColor}`,
-          borderRight: `${borderWidth}px solid ${borderColor}`
+          borderRight: `${borderWidth}px solid ${borderColor}`,
+          zIndex: 100
         }}
-      />
+      >
+        {children || null}
+      </Box>
       <Rectangle
         rotation={60}
         sideLength={sideLength}
@@ -82,7 +85,6 @@ export default function SmallHexagon({
         backColor={backColor}
         borderWidth={borderWidth}
       />
-      <Box sx={{ position: 'relative', top: sideLength / 4.2 }}>{children || null}</Box>
     </Box>
   );
 }

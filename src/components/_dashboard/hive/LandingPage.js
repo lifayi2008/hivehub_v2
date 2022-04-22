@@ -60,7 +60,7 @@ function CustomBox({ children }) {
         borderWidth={0}
         backColor="white"
       >
-        <Typography variant="body2" sx={{ color: '#FF931E' }}>
+        <Typography variant="body2" sx={{ color: '#FF931E', height: '15px', lineHeight: '15px' }}>
           {children}
         </Typography>
       </SmallHexagon>
@@ -145,7 +145,7 @@ export default function LandingPage() {
               Connect Wallet
             </ConnectButton>
           ) : (
-            <ConnectButton variant="outlined" href="/dashboard">
+            <ConnectButton variant="outlined" href="/dashboard/home">
               Dashboard
             </ConnectButton>
           )}
@@ -203,8 +203,8 @@ export default function LandingPage() {
           Features
         </Typography>
         <Grid container direction="row" alignItems="center" justifyContent="space-around">
-          <MyGrid item xs={12} sm={6} md={3}>
-            <Box sx={{ margin: '30px 0 40px' }}>
+          <MyGrid item xs={12} sm={6} md={3} sx={{ position: 'relative', top: '2px' }}>
+            <Box sx={{ margin: '40px 0 40px' }}>
               <SmallHexagon
                 borderColor="#FF931E"
                 rootHexagon
@@ -212,7 +212,10 @@ export default function LandingPage() {
                 borderWidth={2}
                 backColor="transparent"
               >
-                <Typography variant="h3" sx={{ color: '#FF931E' }}>
+                <Typography
+                  variant="h3"
+                  sx={{ color: '#FF931E', height: '30px', lineHeight: '32px' }}
+                >
                   +
                 </Typography>
               </SmallHexagon>

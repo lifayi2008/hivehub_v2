@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Stack, Typography } from '@mui/material';
+import { Box, Button, Chip, Link, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -12,7 +12,11 @@ const CustomButton = styled(Button)({
   borderRadius: '25px',
   fontSize: '15px',
   fontWeight: 'bold',
-  padding: '10px'
+  padding: '10px',
+  '&:hover': {
+    backgroundColor: 'rgba(255, 147, 30, 0.3)',
+    color: '#fff'
+  }
 });
 
 const CustomBox = styled(Box)({
@@ -26,7 +30,8 @@ const CustomBox = styled(Box)({
 });
 
 NodeItem.propTypes = {
-  nodeName: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+  nodeName: PropTypes.string.isRequired,
   nodeStatus: PropTypes.bool.isRequired,
   date: PropTypes.string.isRequired,
   nodeDescription: PropTypes.string,
@@ -34,12 +39,17 @@ NodeItem.propTypes = {
   ownerDID: PropTypes.string.isRequired
 };
 
-function NodeItem({ nodeName, nodeStatus, date, nodeDescription, nodeIP, ownerDID }) {
+function NodeItem({ id, nodeName, nodeStatus, date, nodeDescription, nodeIP, ownerDID }) {
   return (
     <CustomBox>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ my: 2 }}>
         <Typography variant="h5">
-          {nodeName}
+          <Link
+            href={`/dashboard/nodes/detail/${id}`}
+            sx={{ textDecoration: 'none', color: '#000' }}
+          >
+            {nodeName}
+          </Link>
           <Box component="span" sx={{ ml: 2 }}>
             {nodeStatus ? (
               <Chip label="online" color="success" sx={{ height: '20px', color: 'white' }} />
@@ -76,6 +86,7 @@ function NodeItem({ nodeName, nodeStatus, date, nodeDescription, nodeIP, ownerDI
 
 const NodeList = [
   {
+    id: 1,
     nodeName: 'Node A',
     nodeStatus: true,
     date: '2022-01-01 20:00:00',
@@ -84,6 +95,7 @@ const NodeList = [
     ownerDID: 'did:elastos:ikkFHgoUHrVDTU8HTYDAWH9Z8S377Qvt7n'
   },
   {
+    id: 2,
     nodeName: 'Node B',
     nodeStatus: false,
     date: '2022-01-01 20:00:00',
@@ -106,6 +118,7 @@ export default function HiveNodes() {
         {nodeList.map((node, index) => (
           <NodeItem
             key={index}
+            id={node.id}
             nodeName={node.nodeName}
             nodeStatus={node.nodeStatus}
             date={node.date}
@@ -116,7 +129,7 @@ export default function HiveNodes() {
         ))}
       </Box>
 
-      <CustomButton>
+      <CustomButton href="/dashboard/nodes/add">
         <Box
           component="span"
           sx={{ fontSize: '25px', display: 'inline-block', marginRight: '8px' }}

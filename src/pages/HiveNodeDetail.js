@@ -9,11 +9,10 @@ const ContainerBox = styled(Box)({
   boxShadow: '0px 0px 10px rgba(255, 147, 30, 0.3)',
   textAlign: 'center',
   borderRadius: '18px',
-  height: '760px',
+  height: '770px',
   width: '100%',
   marginBottom: '20px',
-  padding: '30px',
-  overflow: 'scroll'
+  padding: '30px'
 });
 
 const CustomButton = styled(Button)({
